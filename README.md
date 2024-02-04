@@ -1,0 +1,1 @@
+# no-unawaited-dot-catch-throw
