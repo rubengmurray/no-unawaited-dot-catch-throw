@@ -4,7 +4,7 @@
   "description": "ESLint plugin to enforce that unawaited .catch( promises are caught and re-thrown",
   "main": "eslint-plugin-no-unawaited-dot-catch-throw.js",
   "scripts": {
-    "test": "node enforce-foo-bar.test.js"
+    "test": "node enforce-nounawaited-dot-catch-throw.test.js"
   },
   "peerDependencies": {
     "eslint": ">=7.32.0"
