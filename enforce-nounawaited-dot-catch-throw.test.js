@@ -1,4 +1,3 @@
-// enforce-foo-bar.test.js
 const {RuleTester} = require("eslint");
 const fooBarRule = require("./no-unawaited-dot-catch-throw");
 
