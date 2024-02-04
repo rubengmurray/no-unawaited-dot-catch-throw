@@ -1,4 +1,11 @@
 
+/**
+ * @fileoverview Tests for no throw in unawaited .catch() block
+ * @author Reece Daniels <github.com/rubengmurray>
+ */
+
+'use strict';
+
 module.exports = {
   meta: {
     type: "problem",
@@ -23,7 +30,7 @@ create(context) {
             }
   
             /*
-            * Report error to ESLint. Error message uses
+            * Report error to ESLint.
             */
             context.report({
               node,
