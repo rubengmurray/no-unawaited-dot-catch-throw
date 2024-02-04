@@ -74,4 +74,8 @@ await myAsyncFunction().catch((error) => {
 
 ## When Not To Use It
 
-If you don't care about disallowing throw statements that doesn't affect execution flow, you can turn off this rule.
+If you don't care about disallowing throw statements that don't affect execution flow, you can turn off this rule.
+
+## References
+
+Thanks to https://www.mariokandut.com/how-to-write-custom-eslint-rule/ for the guide.
