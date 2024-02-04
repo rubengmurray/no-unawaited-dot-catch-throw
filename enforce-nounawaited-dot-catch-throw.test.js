@@ -26,7 +26,7 @@ ruleTester.run(
     // 'invalid' checks cases that should not pass
     invalid: [{
       code: `const pFunc = async () => ''; pFunc().catch(e => { throw e; });`,
-      output: "const pFunc = async () => ''; pFunc().catch(e => { throw e; });",
+      output: "const pFunc = async () => ''; pFunc().catch(e => {  });",
       errors: 1,
     }],
   }
