@@ -2,14 +2,17 @@
   "name": "eslint-plugin-no-unawaited-dot-catch-throw",
   "version": "0.0.1",
   "description": "ESLint plugin to enforce that unawaited .catch( promises are caught and re-thrown",
-  "main": "enforce-foo-bar.test.js",
+  "main": "eslint-plugin-no-unawaited-dot-catch-throw.js",
   "scripts": {
     "test": "node enforce-foo-bar.test.js"
   },
   "peerDependencies": {
     "eslint": ">=7.32.0"
   },
-  "keywords": [],
+  "keywords": ["eslint", "eslintplugin", "eslint-plugin", "catch", "unawaited", "throw"],
   "author": "Reece Daniels <rubengmurray@gmail.com>",
-  "license": "No License"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.32.0"
+  }
 }
