@@ -10,9 +10,9 @@ const ruleTester = new RuleTester({
 
 // Throws error if the tests in ruleTester.run() do not pass
 ruleTester.run(
-  "enforce-no-throw", // rule name
-  fooBarRule, // rule code
-  { // checks
+  "enforce-no-throw",
+  fooBarRule,
+  {
     // 'valid' checks cases that should pass
     valid: [
       {
