@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Tests for no throw in unawaited .catch() block
+ * @author Reece Daniels <github.com/rubengmurray>
+ */
+
+'use strict';
 
 module.exports = {
   meta: {
