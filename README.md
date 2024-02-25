@@ -62,6 +62,12 @@ myAsyncFunction().catch((error) => {
   console.error(error);
 });
 
+// Promise chain is returned to caller
+return myAsyncFunction().catch((error) => {
+  console.error(error);
+  throw error;
+});
+
 // Function is awaited, a re-throw will still terminate code-flow
 await myAsyncFunction().catch((error) => {
   console.error(error);
