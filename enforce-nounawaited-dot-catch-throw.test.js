@@ -19,9 +19,11 @@ ruleTester.run(
         code: `const qFunc = async () => ''; qFunc().catch(e => console.log(e));`,
       }, 
       {
-        code: `const qFunc = async () => ''; const start = async () => await qFunc().catch(e => console.log(e));
-      `,
-      }
+        code: `const qFunc = async () => ''; const start = async () => await qFunc().catch(e => console.log(e));`,
+      },
+      {
+        code: `const qFunc = async () => ''; const start = async () => { return qFunc().catch(e => { console.log(e); throw e }) };`,
+      },
     ],
     // 'invalid' checks cases that should not pass
     invalid: [{

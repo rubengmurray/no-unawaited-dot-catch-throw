@@ -21,7 +21,7 @@ create(context) {
         if (
           node.callee.type === 'MemberExpression' && 
           node.callee.property.name === 'catch' && 
-          node.parent.type !== 'AwaitExpression'
+          (node.parent.type !== 'AwaitExpression' && node.parent.type !== 'ReturnStatement')
           ) {
           if (node?.arguments?.[0]?.body?.body?.find(b => b.type === 'ThrowStatement')) {
             /*
