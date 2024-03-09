@@ -62,6 +62,12 @@ myAsyncFunction().catch((error) => {
   console.error(error);
 });
 
+// Promise chain is returned to caller
+return myAsyncFunction().catch((error) => {
+  console.error(error);
+  throw error;
+});
+
 // Function is awaited, a re-throw will still terminate code-flow
 await myAsyncFunction().catch((error) => {
   console.error(error);
@@ -74,4 +80,8 @@ await myAsyncFunction().catch((error) => {
 
 ## When Not To Use It
 
-If you don't care about disallowing throw statements that doesn't affect execution flow, you can turn off this rule.
+If you don't care about disallowing throw statements that don't affect execution flow, you can turn off this rule.
+
+## References
+
+Thanks to https://www.mariokandut.com/how-to-write-custom-eslint-rule/ for the guide.
