@@ -1,4 +1,3 @@
-// enforce-foo-bar.test.js
 const {RuleTester} = require("eslint");
 const fooBarRule = require("./no-unawaited-dot-catch-throw");
 
@@ -10,9 +9,9 @@ const ruleTester = new RuleTester({
 
 // Throws error if the tests in ruleTester.run() do not pass
 ruleTester.run(
-  "enforce-no-throw", // rule name
-  fooBarRule, // rule code
-  { // checks
+  "enforce-no-throw",
+  fooBarRule,
+  {
     // 'valid' checks cases that should pass
     valid: [
       {
@@ -28,7 +27,7 @@ ruleTester.run(
     // 'invalid' checks cases that should not pass
     invalid: [{
       code: `const pFunc = async () => ''; pFunc().catch(e => { throw e; });`,
-      output: "const pFunc = async () => ''; pFunc().catch(e => { throw e; });",
+      output: "const pFunc = async () => ''; pFunc().catch(e => {  });",
       errors: 1,
     }],
   }
