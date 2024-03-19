@@ -4,10 +4,8 @@
 name: Node.js Package
 
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -29,9 +27,11 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
+      - run: git config --global user.email "bump-no-unawaited-dot-catch-throw@version.com"
+      - run: git config --global user.name "No Unawaited Dot Catch Throw Bot"
       - run: npm ci
       - run: npm version patch -m "Bumping patch version"
-      - run: git push origin
+      - run: git push origin && git push origin --tags
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
