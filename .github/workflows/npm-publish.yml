@@ -4,8 +4,10 @@
 name: Node.js Package
 
 on:
-  release:
-    types: [published]
+  pull_request:
+    types: [closed]
+    branches:
+      - main
 
 jobs:
   build:
@@ -29,7 +31,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm version patch -m "Bumping patch version"
-      - run: git push origin && git push origin --tags
+      - run: git push origin
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
