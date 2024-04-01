@@ -4,7 +4,12 @@
   "description": "ESLint plugin to highlight unawaited .catch() calls that contain throw statements",
   "main": "eslint-plugin-no-unawaited-dot-catch-throw.js",
   "scripts": {
-    "test": "node enforce-nounawaited-dot-catch-throw.test.js"
+    "test": "node enforce-nounawaited-dot-catch-throw.test.js",
+    "publish": "npm version patch -m /\"Bumping patch version/\"",
+    "preversion": "npm test",
+    "version": "npm run build && git add -A dist",
+    "postversion": "git push && git push --tags && rm -rf build/temp",
+    "build": "echo 'no build...'"
   },
   "peerDependencies": {
     "eslint": ">=7.32.0"
