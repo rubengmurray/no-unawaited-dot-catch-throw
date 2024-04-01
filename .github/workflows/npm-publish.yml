@@ -3,9 +3,14 @@
 
 name: Node.js Package
 
+# on:
+#   release:
+#     types: [published]
+
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -27,8 +32,8 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
-      - run: git config user.email "bump-no-unawaited-dot-catch-throw@version.com"
-      - run: git config user.name "No Unawaited Dot Catch Throw Bot"
+      - run: git config --global user.email "bump-no-unawaited-dot-catch-throw@version.com"
+      - run: git config --global user.name "No Unawaited Dot Catch Throw Bot"
       - run: npm ci
       - run: npm version patch -m "Bumping patch version"
       - run: git push origin && git push origin --tags
