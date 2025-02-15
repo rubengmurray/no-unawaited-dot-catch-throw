@@ -44,7 +44,6 @@ create(context) {
               },
               fix: function(fixer) {
                 // Replace the ThrowStatement's range with an empty string
-                // return fixer.replaceText(unnecessaryThrowNode, '');
                 return fixer.replaceTextRange(
                   [unnecessaryThrowNode.range[0], unnecessaryThrowNode.range[1] + 1],
                   ''
