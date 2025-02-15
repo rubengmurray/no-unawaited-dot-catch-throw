@@ -21,14 +21,18 @@ create(context) {
         if (
           node.callee.type === 'MemberExpression' && 
           node.callee.property.name === 'catch' && 
-          (node.parent.type !== 'AwaitExpression' && node.parent.type !== 'ReturnStatement')
+          (
+            node.parent.type !== 'AwaitExpression' && 
+            node.parent.type !== 'ReturnStatement' 
+            && node.parent.type !== 'ArrowFunctionExpression'
+          )
           ) {
             const unnecessaryThrowNode = node?.arguments?.[0]?.body?.body?.find(b => b.type === 'ThrowStatement');
 
             if (!unnecessaryThrowNode) {
               return;
             }
-  
+
             /*
             * Report error to ESLint.
             */
@@ -40,7 +44,10 @@ create(context) {
               },
               fix: function(fixer) {
                 // Replace the ThrowStatement's range with an empty string
-                return fixer.replaceText(unnecessaryThrowNode, '');
+                return fixer.replaceTextRange(
+                  [unnecessaryThrowNode.range[0], unnecessaryThrowNode.range[1] + 1],
+                  ''
+                );
               }
             });
         }

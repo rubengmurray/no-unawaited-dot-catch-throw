@@ -13,20 +13,84 @@ ruleTester.run(
   {
     valid: [
       {
-        code: `const qFunc = async () => ''; qFunc().catch(e => console.log(e));`,
+        code: `
+          const qFunc = async () => ''; 
+          qFunc().catch(e => console.log(e));
+        `,
       }, 
       {
-        code: `const qFunc = async () => ''; const start = async () => await qFunc().catch(e => console.log(e));`,
+        code: `
+          const qFunc = async () => ''; 
+          qFunc().catch(e => { console.log(e) });
+        `,
+      }, 
+      {
+        code: `
+          const qFunc = async () => ''; 
+          qFunc().catch(e => { console.log(e); });
+        `,
+      }, 
+      {
+        code: `
+          const qFunc = async () => ''; 
+          const start = async () => await qFunc().catch(e => console.log(e));
+        `,
       },
       {
-        code: `const qFunc = async () => ''; const start = async () => { return qFunc().catch(e => { console.log(e); throw e }) };`,
+        code: `
+          const qFunc = async () => ''; 
+          const start = async () => qFunc().catch(e => console.log(e));
+        `,
+      },
+      {
+        code: `
+          const qFunc = async () => ''; 
+          const start = async () => qFunc().catch(e => { console.log(e); throw e; });
+        `,
+      },
+      {
+        code: `
+          const qFunc = async () => ''; 
+          const start = async () => qFunc().catch(function (e) { 
+            console.log(e); 
+            throw e; 
+          });
+        `,
+      },
+      {
+        code: `
+          const qFunc = async () => ''; 
+          const start = async () => { 
+            return qFunc().catch(e => {
+              console.log(e); 
+              throw e;
+            }) 
+          };
+        `,
       },
     ],
-    invalid: [{
-      code: `const pFunc = async () => ''; pFunc().catch(e => { throw e; });`,
-      output: "const pFunc = async () => ''; pFunc().catch(e => {  });",
-      errors: 1,
-    }],
+    invalid: [
+      {
+        code: `
+          const pFunc = async () => ''; 
+          pFunc().catch(e => { throw e; });
+        `,
+        output: `
+          const pFunc = async () => ''; 
+          pFunc().catch(e => { });
+        `,
+        errors: 1,
+      },
+      {
+        code: `
+          const pFunc = async () => ''; 
+          pFunc().catch(e => { console.error(e); throw e; });`,
+        output: `
+          const pFunc = async () => ''; 
+          pFunc().catch(e => { console.error(e); });`,
+        errors: 1,
+      }
+    ],
   }
 );
 
