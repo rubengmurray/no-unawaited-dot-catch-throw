@@ -4,6 +4,8 @@
 
 An ESLint rule to highlight when throw statements are used inside unawaited `.catch()` blocks.
 
+Using `--fix` will attempt to replace these with an empty string.
+
 ### Installation
 
 `npm i eslint-plugin-no-unawaited-dot-catch-throw -D`

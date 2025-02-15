@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-no-unawaited-dot-catch-throw",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "ESLint plugin to highlight unawaited .catch() calls that contain throw statements",
   "main": "eslint-plugin-no-unawaited-dot-catch-throw.js",
   "scripts": {
