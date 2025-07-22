@@ -27,6 +27,11 @@ create(context) {
             && node.parent.type !== 'ArrowFunctionExpression'
           )
           ) {
+            // Check the promise is not assigned to a variable
+            if (node.parent.type === 'VariableDeclarator') {
+              return;
+            }
+
             const unnecessaryThrowNode = node?.arguments?.[0]?.body?.body?.find(b => b.type === 'ThrowStatement');
 
             if (!unnecessaryThrowNode) {

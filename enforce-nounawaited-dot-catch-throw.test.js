@@ -60,12 +60,21 @@ ruleTester.run(
       {
         code: `
           const qFunc = async () => ''; 
-          const start = async () => { 
+          const start = async () => {
             return qFunc().catch(e => {
-              console.log(e); 
+              console.log(e);
               throw e;
-            }) 
+            })
           };
+        `,
+      },
+      {
+        code: `
+          const qFunc = async () => '';
+          const start = qFunc().catch(function (e) {
+            console.log(e);
+            throw e;
+          });
         `,
       },
     ],
