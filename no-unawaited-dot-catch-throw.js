@@ -27,6 +27,16 @@ create(context) {
             && node.parent.type !== 'ArrowFunctionExpression'
           )
           ) {
+            // ✅ If the promise is assigned to a variable, skip the check, as it is likely to be awaited later.
+            let current = node.parent;
+            while (current && current.type !== 'Program') {
+              if (current.type === 'VariableDeclarator') {
+                // Assigned to const/let/var — potentially awaited later
+                return;
+              }
+              current = current.parent;
+            }
+
             const unnecessaryThrowNode = node?.arguments?.[0]?.body?.body?.find(b => b.type === 'ThrowStatement');
 
             if (!unnecessaryThrowNode) {
